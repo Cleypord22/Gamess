@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+    }
+    .container {
+        max-width: 400px;
+        margin: 100px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        font-weight: bold;
+    }
+    input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    button {
+        width: 100%;
+        padding: 8px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+    </div>
+    <button onclick="login()">Login</button>
+</div>
+
+<script>
+    var correctPassword = "cleoford";
+    var maxAttempts = 5; 
+    var waitTime = 20 * 60 * 1000; 
+    var attempts = 0;
+    var lastAttemptTime = null;
+
+    function login() {
+        var password = document.getElementById('password').value;
+        if (password === correctPassword) {
+            
+            window.location.href = "game.html"; 
+        } else {
+            attempts++;
+            if (attempts >= maxAttempts) {
+                var currentTime = new Date().getTime();
+                if (!lastAttemptTime || currentTime - lastAttemptTime > waitTime) {
+                    lastAttemptTime = currentTime;
+                    attempts = 0; 
+                    alert('You have reached the maximum number of login attempts. Please try again after 25 minutes.');
+                } else {
+                    alert('You have reached the maximum number of login attempts. Please try again after ' + ((waitTime - (currentTime - lastAttemptTime)) / 1000 / 60).toFixed(2) + ' minutes.');
+                }
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

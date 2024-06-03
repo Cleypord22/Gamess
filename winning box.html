@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open and Play Video</title>
+<style>
+    body {
+       
+font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+
+            color: white;
+            background-image: url("cat.jpg");
+            background-size: cover ;
+            background-position: center ;
+            background-repeat: no-repeat;
+        
+
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    #video-container {
+        max-width: 800px ;
+        margin:  auto;
+        padding: px;
+        background-color: none;
+        border-radius: 0px;
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0.0);
+        text-align: center;
+    }
+    video {
+        width: 100%;
+        border-radius: 5px;
+    }
+    #open-btn {
+        padding: ;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    #open-btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<div id="video-container">
+    <h2>🎉🎉👏🏼🎉🎉👏🏼</h2>
+    <video id="my-video" controls>
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <button id="open-btn" onclick="playVideo()">Open</button>
+</div>
+
+<script>
+    function playVideo() {
+        var video = document.getElementById('my-video');
+        video.play();
+    }
+</script>
+
+</body>
+</html>

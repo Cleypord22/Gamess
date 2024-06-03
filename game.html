@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Game</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    #quiz-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #question {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    #answer {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-bottom: 10px;
+    }
+    #submit-btn {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    #submit-btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <h2>Quiz Game</h2>
+    <div id="question"></div>
+    <input type="text" id="answer">
+    <button id="submit-btn" onclick="checkAnswer()">Submit</button>
+    <p id="result"></p>
+</div>
+
+<script>
+    var questions = [
+        { question: "Anong full Name ni Cley?", answer: "Cleoford" },
+        { question: "Sinong BFF Nya?", answer: "Rance" },
+        { question: "Sino si Jem?", answer: "Jeremy" },
+        { question: "Pinagkakamalan na?", answer: "Basagulero" },
+        { question: "Bakit sya laging nakasalamin?", answer: "Namumula Mata Nya" },
+        { question: "Loyal ba sha?", answer: "Oo" },
+        { question: "Pogi ba sya?", answer: "Oo" },
+        { question: "Anong kasunod ng 2?", answer: "3" },
+        { question: "What is the largest ocean on Earth?", answer: "Pacific Ocean" },
+        { question: "Sino ang Fav Pilipino artist nya?", answer: "Hev abi" }
+    ];
+
+    var currentQuestion = 0;
+    var wrongAttempts = 0;
+
+    function displayQuestion() {
+        document.getElementById('question').textContent = questions[currentQuestion].question;
+        document.getElementById('answer').value = '';
+        document.getElementById('result').textContent = '';
+    }
+
+    function checkAnswer() {
+        var userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+        if (userAnswer === questions[currentQuestion].answer.toLowerCase()) {
+            currentQuestion++;
+            if (currentQuestion === questions.length) {
+                // Redirect to another site upon completing all questions
+                window.location.href = "winning box.html"; // Change to the URL of the other site
+            } else {
+                displayQuestion();
+            }
+        } else {
+            wrongAttempts++;
+            document.getElementById('result').textContent = 'Incorrect answer. Please try again.';
+            if (wrongAttempts === 3) {
+                document.getElementById('result').textContent = 'You have reached the maximum number of wrong attempts. Please answer the questions correctly to proceed.';
+                document.getElementById('submit-btn').disabled = true;
+            }
+        }
+    }
+
+    displayQuestion();
+</script>
+
+</body>
+</html>
